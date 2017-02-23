@@ -1,0 +1,30 @@
+下面我将讲解函数作为参数，以及fn.call()的问题。
+
+开门见山 函数作为参数的意思是：ABBA A(B(){})
+先执行A 函数，在A执行过程中调用B 函数，简称——ABBA
+
+fn.call()的意思是：传参执行fn function A(fn,context){
+console.log('A开始');
+var arg='参数';
+fn.call(context,arg);//context是上下文，call可以转换上下文，但这里是null
+console.log('A结束');
+}
+A(
+function B(arg){
+console.log('B开始');
+console.log('传进B的参数：'+arg);
+console.log('B结束');
+}
+);
+console里面显示的执行结果：
+
+强化记忆
+A(B(){})是ABBA
+
+C(D(){})是CDDC
+
+fn.call(context,arg)是传arg，在context环境下执行fn函数
+
+callback.call(this,arg)是传arg，在this环境下执行callback函数
+
+上下文我就不详述了，你记住你能遇到的情况一般都是this，或者不指定context为null
